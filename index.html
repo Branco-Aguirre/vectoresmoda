@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+    function calcularModa(conjunto) {
+    let frecuencias = {};
+    let moda = null;
+    let maxFrecuencia = 0;
+
+    conjunto.forEach(num => {
+        frecuencias[num] = (frecuencias[num] || 0) + 1; 
+        if (frecuencias[num] > maxFrecuencia) {
+            maxFrecuencia = frecuencias[num]; 
+            moda = num; 
+        }
+    });
+
+    return moda;
+}
+
+
+
+
+
+const input = `
+10
+1 2 3 3 4 5 3 2 3 3
+5
+1 1 1 2 3 
+0
+`;
+
+
+const casosPrueba = input.trim().split('\n'); 
+for (let i = 0; i <= casosPrueba.length; i++) {
+    const valores = casosPrueba[i].trim().split(' ').map(Number);
+    let n;  
+    if(i == 0 || i % 2 == 0 || i == casosPrueba.length) n = valores.shift();
+
+    if (n === 0) {
+        break; 
+    } else if( i % 2 != 0) {
+        const moda = calcularModa(valores); 
+        document.write("Conjunto: " + valores + "<br>")
+        document.write("El numero de la moda es: " + moda + "<br> <br>");
+    }
+} 
+  </script>
+</body>
+</html>
